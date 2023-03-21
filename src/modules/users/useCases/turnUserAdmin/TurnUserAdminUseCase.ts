@@ -10,6 +10,15 @@ class TurnUserAdminUseCase {
 
   execute({ user_id }: IRequest): User {
     // Complete aqui
+    const user = this.usersRepository.findById(user_id);
+
+    if (!user) {
+      throw new Error("Mensagem do erro");
+    }
+
+    const userUpdate = this.usersRepository.turnAdmin(user);
+
+    return userUpdate;
   }
 }
 
